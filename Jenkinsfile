@@ -16,8 +16,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                def payloadMap = readJSON text: payload
-                echo "Payload: ${payloadMap}"
+                echo "Payload: ${payload}"
             }
         }
     }
