@@ -4,7 +4,7 @@ pipeline {
     triggers {
         GenericTrigger(
             causeString: 'Triggered on $ref',
-            token: 'abc123',
+            token: 'test123',
             printContributedVariables: true,
             printPostContent: true,
             silentResponse: false,
@@ -16,6 +16,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                def payloadMap = readJSON text: payload
+                echo "Payload: ${payloadMap}"
             }
         }
     }
