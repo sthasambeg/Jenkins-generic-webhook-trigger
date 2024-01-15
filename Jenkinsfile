@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        HOOK_TOKEN = 'test123'
-    }
-
     triggers {
         GenericTrigger(
             genericVariables: [
@@ -12,7 +8,7 @@ pipeline {
                 [key: 'payload', value: '$']
             ],
             causeString: 'Triggered on $ref',
-            token: "$HOOK_TOKEN",
+            token: 'test123',
             printContributedVariables: true,
             printPostContent: true,
             silentResponse: false,
