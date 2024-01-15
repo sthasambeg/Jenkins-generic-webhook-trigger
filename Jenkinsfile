@@ -38,7 +38,7 @@ pipeline {
 
                 causeString: 'Triggered on $ref',
 
-                token: 'abc123',
+                token: 'test123',
                 tokenCredentialId: '',
 
                 printContributedVariables: true,
