@@ -16,6 +16,10 @@ pipeline {
         )
     }
 
+    options {
+        disableConcurrentBuilds()
+    }
+
     stages {
         stage('Test') {
             steps {
