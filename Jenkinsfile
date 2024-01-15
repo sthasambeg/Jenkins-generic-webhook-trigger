@@ -16,7 +16,7 @@ pipeline {
     //     )
     // }
 
-    properties([
+    options {
         pipelineTriggers([
             [$class: 'GenericTrigger',
                 genericVariables: [
@@ -50,9 +50,9 @@ pipeline {
 
                 // regexpFilterText: '$ref',
                 // regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
-                ]
-            ])
+            ]
         ])
+    }
 
     stages {
         stage('Test') {
