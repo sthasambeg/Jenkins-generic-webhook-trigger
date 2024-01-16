@@ -9,9 +9,10 @@ pipeline {
                 [key: 'ref', value: '$.ref'],
                 [key: 'payload', value: '$'],
                 [key: 'pusher', value: '$.pusher.name'],
-                [key: 'head_commit', value: '$.head_commit']
+                [key: 'head_commit', value: '$.head_commit'],
+                [key: 'repository', value: '$.repository.name'],
             ],
-            causeString: 'Triggered on push to branch master/main',
+            causeString: "Triggered on push to branch master/main of $repository",
             token: 'test123',
             printContributedVariables: false,
             printPostContent: true,
