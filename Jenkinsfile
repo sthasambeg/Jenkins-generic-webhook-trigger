@@ -39,6 +39,7 @@ pipeline {
                     try {
                         if (payload) {
                             echo "Payload: ${payload}"
+                            println payload.repository.full_name
                         }
                     } catch (Exception e) {
                         echo "Error: ${e}"
