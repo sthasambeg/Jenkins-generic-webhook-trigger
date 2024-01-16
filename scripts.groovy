@@ -1,7 +1,7 @@
 def checkCausedByGenericWebhookTrigger() {
     def causeList = currentBuild.getBuildCauses()
     for (cause in causeList) {
-        if (cause.class.name == 'org.jenkinsci.plugins.gwt.GenericCause') {
+        if (cause._class == 'org.jenkinsci.plugins.gwt.GenericCause') {
             return true
         }
     }
