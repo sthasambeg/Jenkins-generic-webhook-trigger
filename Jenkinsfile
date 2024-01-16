@@ -1,3 +1,5 @@
+def scripts
+
 pipeline {
     agent any
 
@@ -32,9 +34,8 @@ pipeline {
                 // echo "Payload: ${payload}"
                 echo 'something new'
 
-                def scripts = load 'scripts.groovy'
-
                 script {
+                    scripts = load 'scripts.groovy'
                     println currentBuild.getBuildCauses()
                     if (env.HELLO) {
                         println true
