@@ -17,7 +17,7 @@ pipeline {
             shouldNotFlatten: false,
             // filtering when to trigger
             regexpFilterText: '$ref', // ref is used for value used for comparison
-            regexpFilterExpression: '^(refs/heads/master)$', // regex for filtering
+            regexpFilterExpression: '^refs/heads/(master|main)$', // regex for filtering
         )
     }
 
