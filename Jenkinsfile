@@ -35,6 +35,10 @@ pipeline {
                 echo 'something new'
 
                 script {
+                    if (payload) {
+                        echo "Payload: ${payload}"
+                    }
+
                     scripts = load 'scripts.groovy'
                     println currentBuild.getBuildCauses()
                     if (env.HELLO) {
