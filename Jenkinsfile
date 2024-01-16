@@ -39,7 +39,8 @@ pipeline {
                     try {
                         if (payload) {
                             echo "Payload: ${payload}"
-                            println payload.repository.full_name
+                            def payloadParsed = readJSON text: payload
+                            println payloadParsed.repository.full_name
                         }
                     } catch (Exception e) {
                         echo "Error: ${e}"
