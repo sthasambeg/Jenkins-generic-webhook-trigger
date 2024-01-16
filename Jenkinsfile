@@ -54,7 +54,16 @@ pipeline {
                         println false
                     }
 
-                    print scripts.checkCausedByGenericWebhookTrigger()
+                    def triggerInfo = ''
+                    if (scripts.checkCausedByGenericWebhookTrigger()) {
+                        parsedPayload = readJSON text: payload
+                        triggerInfo += '\nTriggered by Generic Webhook Trigger
+                                        \n\n- **trigger repo**: ${parsedPayload.repository.full_name}
+                                        \n- **trigger branch**: ${parsedPayload.ref}
+                                        \n- **pusher**: ${parsedPayload.pusher.name}
+                                        \n- **head commit**: ${parsedPayload.head_commit.id}
+                                        \n- **head commit message**: ${parsedPayload.head_commit.message}'
+                    }
                 }
             }
         }
