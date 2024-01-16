@@ -36,8 +36,12 @@ pipeline {
                 echo 'something new'
 
                 script {
-                    if (payload) {
-                        echo "Payload: ${payload}"
+                    try {
+                        if (payload) {
+                            echo "Payload: ${payload}"
+                        }
+                    } catch (Exception e) {
+                        echo "Error: ${e}"
                     }
 
                     scripts = load 'scripts.groovy'
