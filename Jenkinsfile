@@ -3,6 +3,10 @@ def scripts
 pipeline {
     agent any
 
+    environment {
+        DISCORD_WEBHOOK_URL = credentials('konnectcraft-discord-webhook-url')
+    }
+
     triggers {
         GenericTrigger(
             genericVariables: [
@@ -61,6 +65,15 @@ pipeline {
                             \n- **trigger repo**: ${parsedPayload.repository.full_name}\n- **trigger branch**: ${parsedPayload.ref}\n- **pusher**: ${parsedPayload.pusher.name}\n- **head commit**: ${parsedPayload.head_commit.id}\n- **head commit message**: ${parsedPayload.head_commit.message}"""
                     }
                     println triggerInfo
+
+                    def discordDescription = "New test running at ${env.BUILD_URL}" + triggerInfo
+                    if (env.DISCORD_WEBHOOK_URL != null && env.DISCORD_WEBHOOK_URL != '') {
+                        discordSend webhookURL: env.DISCORD_WEBHOOK_URL,
+                            title: 'Testing webhook triggered messaging',
+                            link: env.BUILD_URL,
+                            description: discordDescription,
+                            footer: 'Please ignore this message'
+                    }
                 }
             }
         }
