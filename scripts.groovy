@@ -8,4 +8,4 @@ def checkCausedByGenericWebhookTrigger() {
     return false
 }
 
-rerturn this
+return this
