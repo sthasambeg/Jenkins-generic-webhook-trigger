@@ -36,7 +36,6 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                // echo "Payload: ${payload}"
                 echo 'something new'
 
                 script {
