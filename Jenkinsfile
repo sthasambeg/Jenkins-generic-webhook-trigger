@@ -5,16 +5,18 @@ pipeline {
         GenericTrigger(
             genericVariables: [
                 [key: 'ref', value: '$.ref'],
-                [key: 'payload', value: '$']
+                [key: 'payload', value: '$'],
+                [key: 'pusher', value: '$.pusher.name'],
+                [key: 'head_commit', value: '$.head_commit']
             ],
             causeString: "Triggered on $ref",
             token: 'test123',
-            printContributedVariables: true,
+            printContributedVariables: false,
             printPostContent: true,
             silentResponse: false,
             shouldNotFlatten: false,
             // filtering when to trigger
-            regexpFilterText: '$ref' // ref is used for value used for comparison
+            regexpFilterText: '$ref', // ref is used for value used for comparison
             regexpFilterExpression: '^(refs/heads/master)$', // regex for filtering
         )
     }
