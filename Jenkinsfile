@@ -10,7 +10,7 @@ pipeline {
                 [key: 'payload', value: '$'],
                 [key: 'pusher', value: '$.pusher.name'],
                 [key: 'head_commit', value: '$.head_commit'],
-                [key: 'repository', value: '$.repository.name'],
+                [key: 'repository', value: '$.repository.full_name'],
             ],
             causeString: "Triggered on push to branch master/main of $repository",
             token: 'test123',
