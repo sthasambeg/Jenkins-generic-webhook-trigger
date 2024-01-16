@@ -9,7 +9,7 @@ pipeline {
                 [key: 'pusher', value: '$.pusher.name'],
                 [key: 'head_commit', value: '$.head_commit']
             ],
-            causeString: "Triggered on $ref",
+            causeString: 'Triggered on push to branch master/main',
             token: 'test123',
             printContributedVariables: false,
             printPostContent: true,
@@ -32,6 +32,8 @@ pipeline {
                 // echo "Payload: ${payload}"
                 echo 'something new'
 
+                def scripts = load 'scripts.groovy'
+
                 script {
                     println currentBuild.getBuildCauses()
                     if (env.HELLO) {
@@ -40,17 +42,7 @@ pipeline {
                         println false
                     }
 
-                    def checkCausedByGenericWebhookTrigger() {
-                        def causeList = currentBuild.getBuildCauses()
-                        for (cause in causeList) {
-                            if (cause.class.name == 'org.jenkinsci.plugins.gwt.GenericCause') {
-                                return true
-                            }
-                        }
-                        return false
-                    }
-
-                    print checkCausedByGenericWebhookTrigger()
+                    print scripts.checkCausedByGenericWebhookTrigger()
                 }
             }
         }
